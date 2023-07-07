@@ -39,14 +39,17 @@ def BoxplotSalario(filename):
             salario_str = row[8]  # Obtén la cadena del salario de la columna 8 (índice 8)
             salario_str = salario_str.replace(',', '.')  # Reemplaza la coma por un punto en la cadena
             salario = float(salario_str)  # Convierte la cadena modificada a float
-   
-            salarios.append(salario)
+            if(row[7] == "0"):
+                salarios.append(salario)
 
-    particion = [0,25000,50000,75000,100000,125000,150000,175000,200000]
-    sns.boxplot(salarios)
-    plt.ylabel('Salarios')
-    plt.title('Histograma de Salarios')
+    salariosfiltrados = np.clip(salarios,0,500000)
+    
+    fig, ax = plt.subplots()
+    ax.boxplot(salariosfiltrados, whis=350)
     plt.show()
+    #plt.ylabel('Salarios')
+    #plt.title('Histograma de Salarios')
+    #plt.show()
 
 
 def medianaSalarios(filename):
@@ -91,10 +94,76 @@ def minimoSalarios(filename):
 
     return min(salarios)
 
+def SalariosGeneroLista(filename):
+    MujeresSalarios = [] # Lista para almacenar los salarios
+    HombresSalarios = []
+    with open(filename,'r') as file:
+        reader = csv.reader(file, delimiter=';')
+        reader.__next__() # Salta la primera linea, que es la de los nombres de las columnas
+        for row in reader:
+            salario_str = row[8]  # Obtén la cadena del salario de la columna 8 (índice 8)
+            salario_str = salario_str.replace(',', '.')  # Reemplaza la coma por un punto en la cadena
+            salario = float(salario_str)  # Convierte la cadena modificada a float
+            if(row[3] == "1"):
+                HombresSalarios.append(salario)
+            else :
+                MujeresSalarios.append(salario)
+    return [HombresSalarios, MujeresSalarios]
+
+def SalariosZonaLista(filename):
+    InteriorSalarios = [] # Lista para almacenar los salarios
+    MdeoSalarios = []
+
+    with open(filename,'r') as file:
+        reader = csv.reader(file, delimiter=';')
+        reader.__next__() # Salta la primera linea, que es la de los nombres de las columnas
+        for row in reader:
+            salario_str = row[8]  # Obtén la cadena del salario de la columna 8 (índice 8)
+            salario_str = salario_str.replace(',', '.')  # Reemplaza la coma por un punto en la cadena
+            salario = float(salario_str)  # Convierte la cadena modificada a float
+            if(row[5] == "1"):
+                MdeoSalarios.append(salario)
+            else :
+                InteriorSalarios.append(salario)
+    return [MdeoSalarios, InteriorSalarios]
 
 
+HistogramaSalario('ECH_2022.csv')
+#boxplot genero
+salarios = SalariosGeneroLista('ECH_2022.csv')
+salariosh = salarios[0]
+salariosm = salarios[1]
+
+datos = {'Genero': ['Hombres'] * len(salariosh) + ['Mujeres'] * len(salariosm),
+         'Salarios': salariosh + salariosm}
+print(len(datos))
+etiquetas = ['Hombres', 'Mujeres']
+
+sns.boxplot(x='Genero', y='Salarios', data=datos)
+plt.ylabel('Salarios')
+plt.xlabel('Generos')
+plt.title('Histograma de Salarios')
+plt.show()
 
 
+#boxplot genero
+salarios = SalariosGeneroLista('ECH_2022.csv')
+salariosMdeo = salarios[0]
+salariosInterior = salarios[1]
+
+datos = {'Zona': ['Mdeo'] * len(salariosMdeo) + ['Interior'] * len(salariosInterior),
+         'Salarios': salariosMdeo + salariosInterior}
+print(len(datos))
+etiquetas = ['Mdeo', 'Interior']
+
+sns.boxplot(x='Zona', y='Salarios', data=datos)
+plt.ylabel('Salarios')
+plt.xlabel('Zonas')
+plt.title('Histograma de Salarios')
+plt.show()
+
+
+BoxplotSalario('ECH_2022.csv')
 
 print(minimoSalarios('ECH_2022.csv'))
 print(maximoSalarios('ECH_2022.csv'))
