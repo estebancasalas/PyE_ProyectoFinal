@@ -147,7 +147,7 @@ plt.show()
 
 
 #boxplot genero
-salarios = SalariosGeneroLista('ECH_2022.csv')
+salarios = SalariosZonaLista('ECH_2022.csv')
 salariosMdeo = salarios[0]
 salariosInterior = salarios[1]
 
