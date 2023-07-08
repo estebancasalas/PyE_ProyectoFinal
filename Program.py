@@ -12,25 +12,28 @@ print("Tasa de desempleo: ", tasaDesempleo)
 print(" ")
 
 #Parte 1 b
-print("Tasas de desempleo por rango de edad")
-print("La Tasa de Desempleo es: ", tasaDesempleo)
-print("La Tasa de Desempleo para el rango de edad de 14 a 17 años es: ", TasaDesempleo_RangoEdad('ECH_2022.csv', 14, 17))
-print("La Tasa de Desempleo para el rango de edad de 18 a 25 años es: ", TasaDesempleo_RangoEdad('ECH_2022.csv', 18, 25))
-print("La Tasa de Desempleo para el rango de edad de 26 a 40 años es: ", TasaDesempleo_RangoEdad('ECH_2022.csv', 26, 40))
-print("La Tasa de Desempleo para mayores a 40 años es: ", TasaDesempleo_RangoEdad('ECH_2022.csv', 41, 200))
+# print("Tasas de desempleo por rango de edad")
+# print("La Tasa de Desempleo es: ", tasaDesempleo)
+# print("La Tasa de Desempleo para el rango de edad de 14 a 17 años es: ", TasaDesempleo_RangoEdad('ECH_2022.csv', 14, 17))
+# print("La Tasa de Desempleo para el rango de edad de 18 a 25 años es: ", TasaDesempleo_RangoEdad('ECH_2022.csv', 18, 25))
+# print("La Tasa de Desempleo para el rango de edad de 26 a 40 años es: ", TasaDesempleo_RangoEdad('ECH_2022.csv', 26, 40))
+# print("La Tasa de Desempleo para mayores a 40 años es: ", TasaDesempleo_RangoEdad('ECH_2022.csv', 41, 200))
 
 
-tdRango1 = TasaDesempleo_RangoEdad('ECH_2022.csv', 14, 17)  # tdRango1 = Tasa de Desempleo para el rango de edad de 14 a 17 años
-tdRango2 = TasaDesempleo_RangoEdad('ECH_2022.csv', 18, 25)  # tdRango2 = Tasa de Desempleo para el rango de edad de 18 a 25 años
-tdRango3 = TasaDesempleo_RangoEdad('ECH_2022.csv', 26, 40)  # tdRango3 = Tasa de Desempleo para el rango de edad de 26 a 40 años
-tdRango4 = TasaDesempleo_RangoEdad('ECH_2022.csv', 41, 200) # tdRango4 = Tasa de Desempleo para mayores a 40 años
+# tdRango1 = TasaDesempleo_RangoEdad('ECH_2022.csv', 14, 17)  # tdRango1 = Tasa de Desempleo para el rango de edad de 14 a 17 años
+# tdRango2 = TasaDesempleo_RangoEdad('ECH_2022.csv', 18, 25)  # tdRango2 = Tasa de Desempleo para el rango de edad de 18 a 25 años
+# tdRango3 = TasaDesempleo_RangoEdad('ECH_2022.csv', 26, 40)  # tdRango3 = Tasa de Desempleo para el rango de edad de 26 a 40 años
+# tdRango4 = TasaDesempleo_RangoEdad('ECH_2022.csv', 41, 200) # tdRango4 = Tasa de Desempleo para mayores a 40 años
 
-# Graficar
-plt.plot(["14-17","18-25","26-40","40+"],[tdRango1,tdRango2,tdRango3,tdRango4])
-plt.xlabel("Rango de Edad")
-plt.ylabel("Tasa de Desempleo")
-plt.title("Tasa de Desempleo por Rango de Edad")
-plt.show()
+# # Graficar
+# plt.plot(["14-17","18-25","26-40","40+"],[tdRango1,tdRango2,tdRango3,tdRango4])
+# plt.xlabel("Rango de Edad")
+# plt.ylabel("Tasa de Desempleo")
+# plt.title("Tasa de Desempleo por Rango de Edad")
+# plt.show()
+
+GraficoTasaDesempleoEdad(filename)
+HistogramaTasaDesempleoEdad(filename)
 
 #Parte 2 a - histograma
 HistogramaSalario(filename)

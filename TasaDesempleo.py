@@ -68,3 +68,38 @@ def TasaDesempleo_RangoEdad(filename, minEdad, maxEdad):
 
 #-------------------------------------------------------------------------------------------------------------------------------------------------
 # Parte principal del programa.
+
+def GraficoTasaDesempleoEdad(filename):
+    print("Tasas de desempleo por rango de edad")
+    print("La Tasa de Desempleo para el rango de edad de 14 a 17 años es: ", TasaDesempleo_RangoEdad(filename, 14, 17))
+    print("La Tasa de Desempleo para el rango de edad de 18 a 25 años es: ", TasaDesempleo_RangoEdad(filename, 18, 25))
+    print("La Tasa de Desempleo para el rango de edad de 26 a 40 años es: ", TasaDesempleo_RangoEdad(filename, 26, 40))
+    print("La Tasa de Desempleo para mayores a 40 años es: ", TasaDesempleo_RangoEdad(filename, 41, 200))
+
+
+    tdRango1 = TasaDesempleo_RangoEdad(filename, 14, 17)  # tdRango1 = Tasa de Desempleo para el rango de edad de 14 a 17 años
+    tdRango2 = TasaDesempleo_RangoEdad(filename, 18, 25)  # tdRango2 = Tasa de Desempleo para el rango de edad de 18 a 25 años
+    tdRango3 = TasaDesempleo_RangoEdad(filename, 26, 40)  # tdRango3 = Tasa de Desempleo para el rango de edad de 26 a 40 años
+    tdRango4 = TasaDesempleo_RangoEdad(filename, 41, 200) # tdRango4 = Tasa de Desempleo para mayores a 40 años
+
+    # Graficar
+    plt.plot(["14-17","18-25","26-40","40+"],[tdRango1,tdRango2,tdRango3,tdRango4])
+    plt.xlabel("Rango de Edad")
+    plt.ylabel("Tasa de Desempleo")
+    plt.title("Tasa de Desempleo por Rango de Edad")
+    plt.show()
+
+def HistogramaTasaDesempleoEdad(filename):
+    tdRango1 = TasaDesempleo_RangoEdad(filename, 14, 17)  # tdRango1 = Tasa de Desempleo para el rango de edad de 14 a 17 años
+    tdRango2 = TasaDesempleo_RangoEdad(filename, 18, 25)  # tdRango2 = Tasa de Desempleo para el rango de edad de 18 a 25 años
+    tdRango3 = TasaDesempleo_RangoEdad(filename, 26, 40)  # tdRango3 = Tasa de Desempleo para el rango de edad de 26 a 40 años
+    tdRango4 = TasaDesempleo_RangoEdad(filename, 41, 200) # tdRango4 = Tasa de Desempleo para mayores a 40 años
+
+    # Graficar
+    valores_x = ["14-17","18-25","26-40","40+"]
+    valores_y = [tdRango1,tdRango2,tdRango3,tdRango4]
+    plt.hist(valores_x, bins=4, weights=valores_y, edgecolor='black')
+    plt.xlabel("Rango de Edad")
+    plt.ylabel("Tasa de Desempleo")
+    plt.title("Tasa de Desempleo por Rango de Edad")
+    plt.show()
