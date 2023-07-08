@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import statistics
 import numpy as np
+import scipy
 
 
 def SalarioLista(filename):
@@ -14,7 +15,7 @@ def SalarioLista(filename):
             salario_str = row[8]  # Obtén la cadena del salario de la columna 8 (índice 8)
             salario_str = salario_str.replace(',', '.')  # Reemplaza la coma por un punto en la cadena
             salario = float(salario_str)  # Convierte la cadena modificada a float
-            if(row[7] == "0"):
+            if(row[7] == "0" and row[6] == "1"):
                 salarios.append(salario)
     return salarios
 
@@ -50,7 +51,7 @@ def medianaSalarios(filename):
 def modaSalarios(filename):
     salarios = SalarioLista(filename)
 
-    moda = statistics.mode(salarios)
+    moda = scipy.stats.mode()(salarios)
     return moda
 
 def mediaSalarios(filename):
@@ -93,8 +94,8 @@ def SalariosGeneroLista(filename):
             salario_str = row[8]  # Obtén la cadena del salario de la columna 8 (índice 8)
             salario_str = salario_str.replace(',', '.')  # Reemplaza la coma por un punto en la cadena
             salario = float(salario_str)  # Convierte la cadena modificada a float
-            if(row[7] == "0"):
-                if(row[3] == "1"):
+            if(row[7] == "0" and row[6] == "1"):
+                if(row[3] == "1" ):
                     HombresSalarios.append(salario)
                 else :
                     MujeresSalarios.append(salario)
@@ -111,7 +112,7 @@ def SalariosZonaLista(filename):
             salario_str = row[8]  # Obtén la cadena del salario de la columna 8 (índice 8)
             salario_str = salario_str.replace(',', '.')  # Reemplaza la coma por un punto en la cadena
             salario = float(salario_str)  # Convierte la cadena modificada a float
-            if(row[7] == "0"):
+            if(row[7] == "0" and row[6] == "1"):
                 if(row[5] == "1"):
                     MdeoSalarios.append(salario)
                 else :

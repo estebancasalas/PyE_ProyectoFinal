@@ -8,7 +8,7 @@ filename =  'ECH_2022.csv'
 
 #Parte 1 a
 tasaDesempleo = TasaDesempleo(filename)
-print("Tasa de desempleo: {tasaDesempleo}")
+print("Tasa de desempleo: ", tasaDesempleo)
 print(" ")
 
 #Parte 1 b
@@ -40,17 +40,17 @@ BoxplotSalario(filename)
 
 #Parte 2 c - calcular media, mediana y moda de salarios
 mediana =  medianaSalarios(filename)
-print("Mediana de salarios: {mediana}")
+print("Mediana de salarios: ", mediana)
 moda = modaSalarios(filename)
-print("Moda de salarios: {moda}")
+print("Moda de salarios: ", moda)
 media = mediaSalarios(filename)
-print("Media de salarios: {media}")
+print("Media de salarios: ", media)
 
 #Parte 2 d - calcular minimo, maximo y cuartiles de salario
 minimo = minimoSalarios(filename)
-print("El minimo de salarios: {minimo}")
+print("El minimo de salarios: ", minimo)
 maximo =  maximoSalarios(filename)
-print("El maximo de salarios: {maximo}")
+print("El maximo de salarios: ", maximo)
 
 q1, q2, q3 = quartiles(filename)
 print("Cuartil 25%:", q1)
@@ -74,12 +74,12 @@ print("Intervalo de confianza (95%):", intervaloConfianza)
 #Prueba de hipotesis
  
 referencia = 7.0  # Tasa de desempleo de referencia en el 2021
-desviacionEstandar = math.sqrt((tasaDesempleo * (1 - tasaDesempleo)) / muestra)  # Desviación estándar (valor hipotético)
+desviacionEstandar = math.sqrt((tasaDesempleo * (1 - tasaDesempleo)) / muestra)  
 salariosgenero = SalariosGeneroLista(filename)
 salariosh = salariosgenero[0]
 salariosm = salariosgenero[1]
 
 pruebaUnaCola = PruebaUnaCola(tasaDesempleo,referencia,desviacionEstandar,muestra)
-print("Prueba de una cola: {pruebaUnaCola}")
+print("Prueba de una cola: ", pruebaUnaCola)
 pruebaDosColas = prueba_dos_colas(salariosh, salariosm)
-print("Prueba de dos colas: {pruebaDosColas}")
+print("Prueba de dos colas: ", pruebaDosColas)
