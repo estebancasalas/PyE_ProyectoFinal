@@ -81,5 +81,5 @@ salariosm = salariosgenero[1]
 
 pruebaUnaCola = PruebaUnaCola(tasaDesempleo,referencia,desviacionEstandar,muestra)
 print("Prueba de una cola: ", pruebaUnaCola)
-pruebaDosColas = prueba_dos_colas(salariosh, salariosm)
+pruebaDosColas = PruebaDosColas(salariosh, salariosm)
 print("Prueba de dos colas: ", pruebaDosColas)
