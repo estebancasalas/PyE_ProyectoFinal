@@ -35,10 +35,9 @@ def BoxplotSalario(filename):
     
     fig, ax = plt.subplots()
     ax.boxplot(salariosfiltrados, whis=350)
+    plt.ylabel('Salarios')
+    plt.title('Boxplot de Salarios')
     plt.show()
-    #plt.ylabel('Salarios')
-    #plt.title('Histograma de Salarios')
-    #plt.show()
 
 
 def medianaSalarios(filename):
@@ -132,7 +131,7 @@ def BoxplotGenero(filename):
     sns.boxplot(x='Genero', y='Salarios', data=datos)
     plt.ylabel('Salarios')
     plt.xlabel('Generos')
-    plt.title('Histograma de Salarios')
+    plt.title('Boxplot Salarios por Genero')
     plt.show()
 
 
@@ -149,7 +148,7 @@ def BoxplotZonaGeografica(filename):
     sns.boxplot(x='Zona', y='Salarios', data=datos)
     plt.ylabel('Salarios')
     plt.xlabel('Zonas')
-    plt.title('Histograma de Salarios')
+    plt.title('Boxplot Salarios por Zona Geografica')
     plt.show()
 
 
