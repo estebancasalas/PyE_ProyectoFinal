@@ -132,7 +132,7 @@ def BoxplotGenero(filename):
     sns.boxplot(x='Genero', y='Salarios', data=datos)
     plt.ylabel('Salarios')
     plt.xlabel('Generos')
-    plt.title('Histograma de Salarios')
+    plt.title('Boxplot de Salarios')
     plt.show()
 
 
@@ -149,7 +149,7 @@ def BoxplotZonaGeografica(filename):
     sns.boxplot(x='Zona', y='Salarios', data=datos)
     plt.ylabel('Salarios')
     plt.xlabel('Zonas')
-    plt.title('Histograma de Salarios')
+    plt.title('Boxplot de Salarios')
     plt.show()
 
 
