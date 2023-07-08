@@ -19,7 +19,7 @@ def PruebaUnaCola(tasa_desempleo, referencia, desviacion_estandar, tamaño_muest
         return "No se rechaza la hipótesis nula. No hay suficiente evidencia para afirmar que la tasa de desempleo ha aumentado."
 
 
-def prueba_dos_colas(salarios_hombres, salarios_mujeres):
+def PruebaDosColas(salarios_hombres, salarios_mujeres):
     # Cálculo de estadísticas descriptivas
     media_hombres = sum(salarios_hombres) / len(salarios_hombres)
     media_mujeres = sum(salarios_mujeres) / len(salarios_mujeres)
