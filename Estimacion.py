@@ -18,11 +18,3 @@ def IntervaloConfianza(tasaDesempleo,muestra):
     return (tasaDesempleo - margen_error, tasaDesempleo + margen_error)
 
 
-muestra = 46522  # Tamaño de la muestra
-tasaDesempleo = TasaDesempleo('ECH_2022.csv')
-intervaloConfianza = IntervaloConfianza(tasaDesempleo,muestra)
-
-#Estimacion:2.1
-print("La estimacion de Desempleo del total de la poblacion es:" , EstimacionDesempleoTotalPoblacion(tasaDesempleo))
-#Estimacion:2.2
-print("Intervalo de confianza (95%):", intervaloConfianza)

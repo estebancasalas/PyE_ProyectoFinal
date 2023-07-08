@@ -30,18 +30,7 @@ def HistogramaSalario(filename):
     plt.show()
 
 def BoxplotSalario(filename):
-    salarios = [] # Lista para almacenar los salarios
-
-    with open(filename,'r') as file:
-        reader = csv.reader(file, delimiter=';')
-        reader.__next__() # Salta la primera linea, que es la de los nombres de las columnas
-        for row in reader:
-            salario_str = row[8]  # Obtén la cadena del salario de la columna 8 (índice 8)
-            salario_str = salario_str.replace(',', '.')  # Reemplaza la coma por un punto en la cadena
-            salario = float(salario_str)  # Convierte la cadena modificada a float
-            if(row[7] == "0"):
-                salarios.append(salario)
-
+    salarios = SalarioLista(filename)
     salariosfiltrados = np.clip(salarios,0,500000)
     
     fig, ax = plt.subplots()
@@ -104,10 +93,11 @@ def SalariosGeneroLista(filename):
             salario_str = row[8]  # Obtén la cadena del salario de la columna 8 (índice 8)
             salario_str = salario_str.replace(',', '.')  # Reemplaza la coma por un punto en la cadena
             salario = float(salario_str)  # Convierte la cadena modificada a float
-            if(row[3] == "1"):
-                HombresSalarios.append(salario)
-            else :
-                MujeresSalarios.append(salario)
+            if(row[7] == "0"):
+                if(row[3] == "1"):
+                    HombresSalarios.append(salario)
+                else :
+                    MujeresSalarios.append(salario)
     return [HombresSalarios, MujeresSalarios]
 
 def SalariosZonaLista(filename):
@@ -121,59 +111,49 @@ def SalariosZonaLista(filename):
             salario_str = row[8]  # Obtén la cadena del salario de la columna 8 (índice 8)
             salario_str = salario_str.replace(',', '.')  # Reemplaza la coma por un punto en la cadena
             salario = float(salario_str)  # Convierte la cadena modificada a float
-            if(row[5] == "1"):
-                MdeoSalarios.append(salario)
-            else :
-                InteriorSalarios.append(salario)
+            if(row[7] == "0"):
+                if(row[5] == "1"):
+                    MdeoSalarios.append(salario)
+                else :
+                    InteriorSalarios.append(salario)
     return [MdeoSalarios, InteriorSalarios]
 
 
-HistogramaSalario('ECH_2022.csv')
 #boxplot genero
-salarios = SalariosGeneroLista('ECH_2022.csv')
-salariosh = salarios[0]
-salariosm = salarios[1]
+def BoxplotGenero(filename):
+    salarios = SalariosGeneroLista(filename)
+    salariosh = salarios[0]
+    salariosm = salarios[1]
 
-datos = {'Genero': ['Hombres'] * len(salariosh) + ['Mujeres'] * len(salariosm),
-         'Salarios': salariosh + salariosm}
-print(len(datos))
-etiquetas = ['Hombres', 'Mujeres']
+    datos = {'Genero': ['Hombres'] * len(salariosh) + ['Mujeres'] * len(salariosm),
+            'Salarios': salariosh + salariosm}
+    etiquetas = ['Hombres', 'Mujeres']
 
-sns.boxplot(x='Genero', y='Salarios', data=datos)
-plt.ylabel('Salarios')
-plt.xlabel('Generos')
-plt.title('Histograma de Salarios')
-plt.show()
+    sns.boxplot(x='Genero', y='Salarios', data=datos)
+    plt.ylabel('Salarios')
+    plt.xlabel('Generos')
+    plt.title('Histograma de Salarios')
+    plt.show()
 
 
 #boxplot genero
-salarios = SalariosZonaLista('ECH_2022.csv')
-salariosMdeo = salarios[0]
-salariosInterior = salarios[1]
+def BoxplotZonaGeografica(filename):
+    salarios = SalariosZonaLista('ECH_2022.csv')
+    salariosMdeo = salarios[0]
+    salariosInterior = salarios[1]
 
-datos = {'Zona': ['Mdeo'] * len(salariosMdeo) + ['Interior'] * len(salariosInterior),
-         'Salarios': salariosMdeo + salariosInterior}
-print(len(datos))
-etiquetas = ['Mdeo', 'Interior']
+    datos = {'Zona': ['Mdeo'] * len(salariosMdeo) + ['Interior'] * len(salariosInterior),
+            'Salarios': salariosMdeo + salariosInterior}
+    #etiquetas = ['Mdeo', 'Interior']
 
-sns.boxplot(x='Zona', y='Salarios', data=datos)
-plt.ylabel('Salarios')
-plt.xlabel('Zonas')
-plt.title('Histograma de Salarios')
-plt.show()
-
-
-BoxplotSalario('ECH_2022.csv')
-
-print(minimoSalarios('ECH_2022.csv'))
-print(maximoSalarios('ECH_2022.csv'))
+    sns.boxplot(x='Zona', y='Salarios', data=datos)
+    plt.ylabel('Salarios')
+    plt.xlabel('Zonas')
+    plt.title('Histograma de Salarios')
+    plt.show()
 
 
-q1, q2, q3 = quartiles('ECH_2022.csv')
-print("Cuartil 25%:", q1)
-print("Cuartil 50%:", q2)
-print("Cuartil 75%:", q3)
 
-print(medianaSalarios('ECH_2022.csv'))
-print(modaSalarios('ECH_2022.csv'))
-print(mediaSalarios('ECH_2022.csv'))
+
+
+

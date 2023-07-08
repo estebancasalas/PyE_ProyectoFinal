@@ -45,17 +45,6 @@ def prueba_dos_colas(salarios_hombres, salarios_mujeres):
 
 
 
-muestra = 46522  # Tamaño de la muestra
-tasaDesempleo = TasaDesempleo('ECH_2022.csv')
-referencia = 7.5  # Tasa de desempleo de referencia en el 2021
-desviacionEstandar = math.sqrt((tasaDesempleo * (1 - tasaDesempleo)) / muestra)  # Desviación estándar (valor hipotético)
-salarios = SalariosGeneroLista('ECH_2022.csv')
-salariosh = salarios[0]
-salariosm = salarios[1]
 
-
-#Prueba Hipotesis 3
-print(PruebaUnaCola(tasaDesempleo,referencia,desviacionEstandar,muestra))
-print(prueba_dos_colas(salariosh, salariosm))
 
 
