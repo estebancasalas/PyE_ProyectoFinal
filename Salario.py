@@ -14,8 +14,8 @@ def SalarioLista(filename):
             salario_str = row[8]  # Obtén la cadena del salario de la columna 8 (índice 8)
             salario_str = salario_str.replace(',', '.')  # Reemplaza la coma por un punto en la cadena
             salario = float(salario_str)  # Convierte la cadena modificada a float
-   
-            salarios.append(salario)
+            if(row[7] == "0"):
+                salarios.append(salario)
     return salarios
 
 
