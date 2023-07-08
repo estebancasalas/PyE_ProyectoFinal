@@ -3,7 +3,6 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import statistics
 import numpy as np
-import scipy
 
 
 def SalarioLista(filename):
@@ -51,7 +50,7 @@ def medianaSalarios(filename):
 def modaSalarios(filename):
     salarios = SalarioLista(filename)
 
-    moda = scipy.stats.mode()(salarios)
+    moda = statistics.mode(salarios)
     return moda
 
 def mediaSalarios(filename):
